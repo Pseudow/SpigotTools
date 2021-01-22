@@ -3,9 +3,8 @@ package net.pseudow.tools.nickname;
 import java.util.UUID;
 
 public class NickedPlayer {
-    private final String realName;
+    private final String realName, nickName;
     private final UUID playerId;
-    private String nickName;
 
     /**
      *
@@ -17,10 +16,6 @@ public class NickedPlayer {
         this.realName = realName;
         this.nickName = nickName;
         this.playerId = playerId;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
     }
 
     public String getRealName() {

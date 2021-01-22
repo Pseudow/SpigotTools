@@ -57,6 +57,16 @@ public class Reflection {
         }
     }
 
+    public static Object invokeField(Object instance, String fieldName) {
+        try {
+            return getField(instance.getClass(), fieldName).get(instance);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public static void setField(Field field, Object instance, Object value) {
         if (field == null) throw new RuntimeException("No such field");
         field.setAccessible(true);

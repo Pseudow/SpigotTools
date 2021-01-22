@@ -23,19 +23,37 @@ public class Hologram {
     private final BukkitTask taskID;
     private final double rangeView = 60;
     private boolean linesChanged;
+    private boolean up;
 
     /**
      * This class is inspired by a SamaGames class
      * You can find it in github: https://github.com/SamaGames/SamaGamesAPI.
-     * I modified this class to make it available for multi-versioning.
+     * I modified this class to make it available for multi-versioning and others things.
      *
-     * @author SamaGames
+     * @author SamaGames & Pseudow
      *
+     * @param plugin The main instance of you plugin
      * @param lines Hologram's lines
      */
     public Hologram(JavaPlugin plugin, String... lines) {
+        this(plugin, true, lines);
+    }
+
+    /**
+     * This class is inspired by a SamaGames class
+     * You can find it in github: https://github.com/SamaGames/SamaGamesAPI.
+     * I modified this class to make it available for multi-versioning and others things.
+     *
+     * @author SamaGames & Pseudow
+     *
+     * @param plugin The main instance of you plugin
+     * @param up Does the hologram has to go to the top or bottom
+     * @param lines Hologram's lines
+     */
+    public Hologram(JavaPlugin plugin, boolean up, String... lines) {
         this.receivers = new HashMap<>();
         this.entities = new HashMap<>();
+        this.up = up;
 
         this.lines = new ArrayList<>();
         this.lines.addAll(Arrays.asList(lines));
@@ -181,7 +199,8 @@ public class Hologram {
 
         for (int i = 0; i < this.lines.size(); i++) {
             this.entities.put(i, generateEntitiesForLine(first.clone(), this.lines.get(i)));
-            first.subtract(0, distance, 0);
+            if(up) first.add(0, distance, 0);
+            else first.subtract(0, distance, 0);
         }
 
         this.location = loc;
@@ -261,14 +280,19 @@ public class Hologram {
         return this.location;
     }
 
-    private static EntityArmorStand generateEntitiesForLine(Location loc, String text) {
+    private EntityArmorStand generateEntitiesForLine(Location loc, String text) {
         EntityArmorStand entity = new EntityArmorStand(loc);
-        entity.setSize(0.00001F, 0.00001F);
+        try {
+            entity.setSize(0.00001F, 0.00001F);
+        } catch(Exception exception) {
+            entity.setSmall(true);
+        }
+
         entity.setInvisible(true);
         entity.setGravity(false);
         entity.setCustomName(text);
         entity.setCustomNameVisible(true);
-        entity.setLocation(new Location(loc.getWorld(), loc.getX(), loc.getY() - 2, loc.getZ(), 0, 0));
+        entity.setLocation(new Location(loc.getWorld(), loc.getX(), loc.getY() + 1, loc.getZ(), 0, 0));
 
         return entity;
     }

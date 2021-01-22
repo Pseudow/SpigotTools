@@ -1,4 +1,4 @@
-package net.pseudow.tools.titles;
+package net.pseudow.tools.title;
 
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerListHeaderFooter;

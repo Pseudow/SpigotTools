@@ -6,7 +6,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.Constructor;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.UUID;
 
 public class NickNameManager {
     private static Constructor<?> packetPlayOutPlayerInfoConstructor;
@@ -22,7 +25,7 @@ public class NickNameManager {
      *
      * @author Pseudow
      *
-     * @param javaPlugin - An instance of you main class.
+     * @param javaPlugin An instance of you main class.
      */
     public NickNameManager(JavaPlugin javaPlugin) {
         this.javaPlugin = javaPlugin;
@@ -49,8 +52,8 @@ public class NickNameManager {
      *
      * @author Pseudow
      *
-     * @param player - The player you want to change name.
-     * @param nickName - The new name which will be displayed.
+     * @param player The player you want to change name.
+     * @param nickName The new name which will be displayed.
      */
     public void setNickName(Player player, String nickName) {
         this.removeNickName(player);
@@ -63,7 +66,7 @@ public class NickNameManager {
      *
      * @author Pseudow
      *
-     * @param player - The player you want to remove old nickname.
+     * @param player The player you want to remove old nickname.
      */
     public void removeNickName(Player player) {
         for (NickedPlayer nickedPlayer : this.nickedPlayers)
@@ -108,7 +111,7 @@ public class NickNameManager {
      *
      * @author Pseudow
      *
-     * @param uniqueId - The player's unique id.
+     * @param uniqueId The player's unique id.
      * @return true if the player has a nickname, false if it doesn't.
      */
     public boolean isNicked(UUID uniqueId) {
@@ -122,7 +125,7 @@ public class NickNameManager {
      *
      * @author Pseudow
      *
-     * @param nickName - The player's current nickname.
+     * @param nickName The player's current nickname.
      * @return true if the player has a nickname, false if it doesn't.
      */
     public boolean isNicked(String nickName) {

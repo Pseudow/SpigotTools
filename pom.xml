@@ -22,6 +22,18 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -40,17 +52,11 @@
             <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-        <!-- I know im a part of people who put dependencies and repositories for two files -->
         <dependency>
             <groupId>fr.mrmicky</groupId>
             <artifactId>FastBoard</artifactId>
             <version>1.1.0</version>
             <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.SparklingComet</groupId>
-            <artifactId>java-mojang-api</artifactId>
-            <version>-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

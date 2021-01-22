@@ -86,7 +86,8 @@ public class EntityLiving {
         if (Reflection.getVersion().contains("8")) {
             Constructor<?> packetPlayOutEntityEquipment = Reflection.getConstructor(Objects.requireNonNull(Reflection.getNMSClass("PacketPlayOutEntityEquipment")), int.class, int.class, this.itemStack);
             packet = Reflection.callConstructor(packetPlayOutEntityEquipment, getId(), slot.getSlot(), Reflection.invokeStaticMethod(craftItemStackClass, "asNMSCopy", itemStack));
-        } else if (Reflection.getVersion().contains("12")) {
+        } else if (Reflection.getVersion().contains("9") || Reflection.getVersion().contains("10")
+                || Reflection.getVersion().contains("11") || Reflection.getVersion().contains("12")) {
             Constructor<?> packetPlayOutEntityEquipment = Reflection.getConstructor(Objects.requireNonNull(Reflection.getNMSClass("PacketPlayOutEntityEquipment")), int.class, Reflection.getNMSClass("EnumItemSlot"), this.itemStack);
             packet = Reflection.callConstructor(packetPlayOutEntityEquipment, getId(), slot.getEnum(), Reflection.invokeStaticMethod(craftItemStackClass, "asNMSCopy", itemStack));
 

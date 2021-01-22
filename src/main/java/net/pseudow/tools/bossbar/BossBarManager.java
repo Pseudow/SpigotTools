@@ -31,9 +31,9 @@ public class BossBarManager implements Runnable {
      *
      * @author Pseudow
      *
-     * @param plugin - The main of your current plugin.
-     * @param defaultMessages - The message which will be displayed to the players.
-     * @param delay - The delay between messages. Be careful, this delay is in seconds.
+     * @param plugin The main of your current plugin.
+     * @param defaultMessages The message which will be displayed to the players.
+     * @param delay The delay between messages. Be careful, this delay is in seconds.
      *
      */
     public BossBarManager(JavaPlugin plugin, List<String> defaultMessages, int delay) {
@@ -61,7 +61,7 @@ public class BossBarManager implements Runnable {
      *
      * @author Pseudow
      *
-     * @param player - The player you want to make boss bar visible.
+     * @param player The player you want to make boss bar visible.
      */
     public void onLogin(Player player) {
         World world = ((CraftWorld) player.getWorld()).getHandle();
@@ -86,7 +86,7 @@ public class BossBarManager implements Runnable {
      *
      * @author Pseudow
      *
-     * @param player - The player you want to make boss bar invisible.
+     * @param player The player you want to make boss bar invisible.
      */
     public void onLogout(Player player) {
         EntityWither entityWither = this.bossBars.remove(player);
@@ -103,8 +103,8 @@ public class BossBarManager implements Runnable {
      *
      * @author Pseudow
      *
-     * @param player - Change the boss bar title.
-     * @param newMessages - The title list you want to have now.
+     * @param player Change the boss bar title.
+     * @param newMessages The title list you want to have now.
      */
     public void setTitle(Player player, List<String> newMessages) {
         this.messages.put(player.getUniqueId(), newMessages);
@@ -116,8 +116,8 @@ public class BossBarManager implements Runnable {
      *
      * @author Pseudow
      *
-     * @param player - The player you want to change its bossbar's progress.
-     * @param progress - The progress number. 1 is the hole bossbar, 0.8 is 80% of the bossbar.
+     * @param player The player you want to change its bossbar's progress.
+     * @param progress The progress number. 1 is the hole bossbar, 0.8 is 80% of the bossbar.
      *
      * @deprecated Be careful, if the boss bar progress reaches its half pv, it will display
      * a "shield" around it. I can remove it but i can't put the code here sorry so please don't dm
