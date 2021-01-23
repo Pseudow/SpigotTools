@@ -40,7 +40,7 @@ public class CommandManager {
                     if (annotation.requirePlayer() && !(commandSender instanceof Player))
                         return true;
 
-                    if (arguments.length != annotation.argsLength()) {
+                    if (arguments.length >= 0 && arguments.lenght != annotation.argsLength()) {
                         commandSender.sendMessage(this.argumentsTooLong == null || this.argumentsTooLong.equals("") ? annotation.usage() :
                                 this.argumentsTooLong.replace("%command%", label).replace("%args_length%", Integer.toString(arguments.length)).toString());
                         return true;
@@ -54,7 +54,7 @@ public class CommandManager {
                         return (boolean) Reflection.invokeMethod(command, method.getName(), commandSender, label, arguments);
                     }
 
-                    return false;
+                    return Reflection.invokeMethod(command, method.getName(), commandSender, label, arguments);
                 });
 
                 ((SimpleCommandMap) Objects.requireNonNull(Reflection.invokeMethod(Bukkit.getServer(), "getCommandMap"))).register(annotation.name(), commandTemplate);
