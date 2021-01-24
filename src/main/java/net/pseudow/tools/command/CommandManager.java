@@ -54,7 +54,8 @@ public class CommandManager {
                         return (boolean) Reflection.invokeMethod(command, method.getName(), commandSender, label, arguments);
                     }
 
-                    return Reflection.invokeMethod(command, method.getName(), commandSender, label, arguments);
+                    Reflection.invokeMethod(command, method.getName(), commandSender, label, arguments);
+                    return true;
                 });
 
                 ((SimpleCommandMap) Objects.requireNonNull(Reflection.invokeMethod(Bukkit.getServer(), "getCommandMap"))).register(annotation.name(), commandTemplate);
